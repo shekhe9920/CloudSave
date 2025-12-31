@@ -2,8 +2,11 @@
 package db
 
 import (
+	"cloudsave/internal/models"
 	"database/sql"
 	"fmt"
+	"golang.org/x/crypto/bcrypt"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -39,4 +42,35 @@ func Connect(host, user, password, name string) (*sql.DB, error) {
 	}
 
 	return db, nil
+}
+
+// CreateUser creates a new user in the database
+func CreateUser(db *sql.DB, email, password string) (*models.User, error) {
+	// hash the password
+	hashPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	if err != nil {
+		return nil, fmt.Errorf("failed to hash password: %v", err)
+	}
+
+	// insert the user into the database
+	result, err := db.Exec("INSERT INTO users (email, password_hash) VALUES (?, ?)", email, string(hashPassword))
+	if err != nil {
+		return nil, fmt.Errorf("failed to create user: %v", err)
+	}
+
+	// get the user ID
+	userID, err := result.LastInsertId()
+	if err != nil {
+		return nil, fmt.Errorf("failed to get user ID: %v", err)
+	}
+
+	// return the user
+	user := &models.User{
+		ID:           int(userID),
+		Email:        email,
+		PasswordHash: string(hashPassword),
+		CreatedAt:    time.Now(),
+	}
+
+	return user, nil
 }
