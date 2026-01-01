@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cloudsave/internal/handlers"
 	"fmt"
 	"log"
 	"net/http"
@@ -10,6 +11,7 @@ import (
 )
 
 func main() {
+	// load inn configuration
 	cfg := config.Load()
 
 	database, err := db.Connect(
@@ -18,7 +20,6 @@ func main() {
 		"CLOUDSAVE#99",
 		cfg.DBName,
 	)
-
 	if err != nil {
 		log.Fatal("Database connection failed: %v", err)
 	}
@@ -30,6 +31,10 @@ func main() {
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("OK"))
+	})
+
+	http.HandleFunc("/register", func(w http.ResponseWriter, r *http.Request) {
+		handlers.Register(w, r, database)
 	})
 
 	log.Printf("Server running on :%s\n", cfg.Port)
