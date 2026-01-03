@@ -3,48 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+
+    <!-- Link to external CSS file -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <section>
-        <div class="login-box">
-            <form  action="">
-                <h2>Login</h2>
-                <div class="input-box">
+<!-- Main full-screen section with background -->
+<section>
+
+    <!-- Login card / box -->
+    <div class="login-box">
+
+        <!--
+            Login form
+            id="loginForm" is used by JavaScript to handle submit
+            No action="" because we will send data using JS (fetch)
+        -->
+        <form id="loginForm">
+
+            <!-- Title -->
+            <h2>Login</h2>
+
+            <!-- Email input field -->
+            <div class="input-box">
                     <span class="icon">
+                        <!-- Email icon -->
                         <ion-icon name="mail"></ion-icon>
                     </span>
-                    <input type="email" required>
-                    <label>Email</label>
-                </div>
 
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" required>
-                    <label>Password</label>
-                </div>
+                <!--
+                    Email input
+                    id="email" is important for JavaScript
+                -->
+                <input type="email" id="email" required>
 
-                <div class="remember-forgot">
-                    <label><input type="checkbox">Remember me</label>
-                    <a href="#">Forgot Password?</a>
-                </div>
+                <!-- Label for email -->
+                <label>Email</label>
+            </div>
 
-                <button type="submit">Login</button>
+            <!-- Password input field -->
+            <div class="input-box">
+                    <span class="icon">
+                        <!-- Lock icon -->
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
 
-                <div class="register-link">
-                    <p>Don't have an account? <a href="#">Register</a></p>
-                </div>
+                <!--
+                    Password input
+                    id="password" is important for JavaScript
+                -->
+                <input type="password" id="password" required>
 
-            </form>
-        </div>
-    </section>
+                <!-- Label for password -->
+                <label>Password</label>
+            </div>
 
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+            <!-- Remember me + forgot password -->
+            <div class="remember-forgot">
+                <label>
+                    <input type="checkbox">
+                    Remember me
+                </label>
+
+                <a href="#">Forgot Password?</a>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit">Login</button>
+
+            <!-- Register link -->
+            <div class="register-link">
+                <p>
+                    Don't have an account?
+                    <a href="#">Register</a>
+                </p>
+            </div>
+
+        </form>
+    </div>
+</section>
+
+<!-- Ionicons (icons library) -->
+<script type="module"
+        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js">
+</script>
+
+<script nomodule
+        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js">
+</script>
 
 </body>
-
-
 </html>
