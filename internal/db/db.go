@@ -74,3 +74,30 @@ func CreateUser(db *sql.DB, email, password string) (*models.User, error) {
 
 	return user, nil
 }
+
+func GetUserByEmail(db *sql.DB, email string) (*models.User, error) {
+	query := `
+		SELECT id, email, password_hash, created_at
+		FROM users
+		WHERE email = ?
+	`
+
+	row := db.QueryRow(query, email)
+
+	user := &models.User{}
+
+	err := row.Scan(
+		&user.ID,
+		&user.Email,
+		&user.PasswordHash,
+		&user.CreatedAt,
+	)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, fmt.Errorf("user not found")
+		}
+		return nil, err
+	}
+
+	return user, nil
+}

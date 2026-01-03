@@ -37,6 +37,10 @@ func main() {
 		handlers.Register(w, r, database)
 	})
 
+	http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
+		handlers.Login(w, r, database)
+	})
+
 	log.Printf("Server running on :%s\n", cfg.Port)
 	log.Fatal(http.ListenAndServe(":"+cfg.Port, nil))
 }
