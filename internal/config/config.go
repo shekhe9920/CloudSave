@@ -6,11 +6,12 @@ import "os"
 
 // Config holds the application configuration settings.
 type Config struct {
-	Port   string // the network port the server listens on
-	DBHost string // database server address
-	DBUser string // database authentication username
-	DBPass string // database authentication password
-	DBName string // name of the database to connect to
+	Port      string // the network port the server listens on
+	DBHost    string // database server address
+	DBUser    string // database authentication username
+	DBPass    string // database authentication password
+	DBName    string // name of the database to connect to
+	JWTSecret string // secret key used to sign JWT tokens
 }
 
 // Load initializes a new Config by fetching values from environment variables.
@@ -18,11 +19,12 @@ type Config struct {
 // It returns a pointer to the populated Config struct.
 func Load() *Config {
 	return &Config{
-		Port:   getEnv("PORT", "8080"),
-		DBHost: getEnv("DB_HOST", "localhost"),
-		DBUser: getEnv("DB_USER", "root"),
-		DBPass: getEnv("DB_PASS", ""),
-		DBName: getEnv("DB_NAME", "cloudsave"),
+		Port:      getEnv("PORT", "8080"),
+		DBHost:    getEnv("DB_HOST", "localhost"),
+		DBUser:    getEnv("DB_USER", "root"),
+		DBPass:    getEnv("DB_PASS", ""),
+		DBName:    getEnv("DB_NAME", "cloudsave"),
+		JWTSecret: getEnv("JWT_SECRET", "dev-secret-cloud-save"),
 	}
 }
 

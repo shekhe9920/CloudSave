@@ -1,3 +1,5 @@
+// login.js
+
 /**
  * Handles login form submission.
  *
@@ -35,8 +37,8 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
         // Parse JSON response from backend
         const data = await response.json();
 
-        // TODO: Store authentication token when backend returns one
-        // localStorage.setItem("token", data.token);
+        // authentication token
+        localStorage.setItem("token", data.token);
 
         // Redirect user to dashboard after successful login
         window.location.href = "dashboard.html";

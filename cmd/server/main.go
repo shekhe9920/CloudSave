@@ -9,22 +9,32 @@ import (
 	"cloudsave/internal/config"
 	"cloudsave/internal/db"
 	"cloudsave/internal/middleware"
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	// load inn configuration
+	// Load environment variables from .env file
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	// Load configuration from environment variables
 	cfg := config.Load()
 
+	// Print the loaded DB_PASS for debugging
+	log.Println("DB Password:", cfg.DBPass) // Check that DB_PASS is loaded correctly
+
+	// Connect to the database
 	database, err := db.Connect(
 		cfg.DBHost,
 		cfg.DBUser,
-		"CLOUDSAVE#99",
+		cfg.DBPass,
 		cfg.DBName,
 	)
 	if err != nil {
-		log.Fatalf("Database connection failed: %v", err)
+		log.Fatal("Database connection failed: %v", err)
 	}
-
 	defer database.Close()
 
 	fmt.Println("Connecting to database")
@@ -43,6 +53,15 @@ func main() {
 	mux.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
 		handlers.Login(w, r, database)
 	})
+
+	// protect dashboard-endpoint
+	protected := middleware.Auth(cfg.JWTSecret, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// This is protected content
+		w.Write([]byte("Protected content"))
+	}))
+
+	// adding protected route
+	mux.Handle("/api/dashboard", protected)
 
 	handler := middleware.CORS(mux)
 

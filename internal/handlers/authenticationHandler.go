@@ -1,7 +1,9 @@
 package handlers
 
 import (
+	"cloudsave/internal/config"
 	"cloudsave/internal/db"
+	"cloudsave/internal/utils"
 	"database/sql"
 	"encoding/json"
 	"golang.org/x/crypto/bcrypt"
@@ -43,5 +45,14 @@ func Login(w http.ResponseWriter, r *http.Request, database *sql.DB) {
 
 	// Login successful
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(user)
+	cfg := config.Load()
+	token, err := utils.GenerateJWT(user.ID, cfg.JWTSecret)
+	if err != nil {
+		http.Error(w, "Failed to generate token", http.StatusInternalServerError)
+		return
+	}
+
+	json.NewEncoder(w).Encode(map[string]string{
+		"token": token,
+	})
 }
