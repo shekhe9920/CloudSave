@@ -28,22 +28,6 @@ func main() {
 	defer database.Close()
 
 	fmt.Println("Connecting to database")
-	/*
-		http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-			w.WriteHeader(http.StatusOK)
-			w.Write([]byte("OK"))
-		})
-
-		http.HandleFunc("/register", func(w http.ResponseWriter, r *http.Request) {
-			handlers.Register(w, r, database)
-		})
-
-		http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
-			handlers.Login(w, r, database)
-		})
-
-		log.Printf("Server running on :%s\n", cfg.Port)
-		log.Fatal(http.ListenAndServe(":"+cfg.Port, nil))*/
 
 	mux := http.NewServeMux()
 

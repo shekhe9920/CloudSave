@@ -75,17 +75,23 @@ func CreateUser(db *sql.DB, email, password string) (*models.User, error) {
 	return user, nil
 }
 
+// GetUserByEmail fetches a user from the database using the email address
 func GetUserByEmail(db *sql.DB, email string) (*models.User, error) {
+
+	// SQL query to find a user by email
 	query := `
 		SELECT id, email, password_hash, created_at
 		FROM users
 		WHERE email = ?
 	`
 
+	// Run the query with the provided email
 	row := db.QueryRow(query, email)
 
+	// Create an empty User struct to store the result
 	user := &models.User{}
 
+	// Read the database row into the user struct
 	err := row.Scan(
 		&user.ID,
 		&user.Email,
@@ -93,11 +99,14 @@ func GetUserByEmail(db *sql.DB, email string) (*models.User, error) {
 		&user.CreatedAt,
 	)
 	if err != nil {
+		// No user found with this email
 		if err == sql.ErrNoRows {
 			return nil, fmt.Errorf("user not found")
 		}
+		// Any other database error
 		return nil, err
 	}
 
+	// User found successfully
 	return user, nil
 }
