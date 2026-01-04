@@ -18,19 +18,23 @@ The project is primarily built to demonstrate:
 
 ## Project Status
 
-Under active development
+Under active development.
 
-Implemented so far:
+### Implemented so far:
 - Project structure following Go best practices
 - Environment-based configuration
 - MySQL database connection
-- User registration with hashed passwords
-- REST API endpoint for user registration
+- User registration with hashed passwords (bcrypt)
+- User login with JWT access tokens
+- Secure refresh token flow using HttpOnly session cookies
+- Access token refresh endpoint (`/auth/refresh`)
+- Authentication middleware for protected routes
 
-Planned features:
-- User login with JWT authentication
+### Planned features:
+- Logout endpoint
+- Refresh token rotation
 - File upload and download
-- Access control and authorization
+- Fine-grained access control and authorization
 - Frontend integration
 
 ## Project Structure

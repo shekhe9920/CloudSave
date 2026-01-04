@@ -13,6 +13,10 @@ import (
 )
 
 func main() {
+
+	// Initialize global CookieStore (DI)
+	middleware.InitSessionStore()
+
 	// Load environment variables from .env file
 	err := godotenv.Load()
 	if err != nil {
@@ -24,6 +28,7 @@ func main() {
 
 	// Print the loaded DB_PASS for debugging
 	log.Println("DB Password:", cfg.DBPass) // Check that DB_PASS is loaded correctly
+	fmt.Println("Connecting to database")
 
 	// Connect to the database
 	database, err := db.Connect(
@@ -36,8 +41,6 @@ func main() {
 		log.Fatal("Database connection failed: %v", err)
 	}
 	defer database.Close()
-
-	fmt.Println("Connecting to database")
 
 	mux := http.NewServeMux()
 
@@ -53,6 +56,12 @@ func main() {
 	mux.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
 		handlers.Login(w, r, database)
 	})
+
+	// New route for refreshing token
+	mux.HandleFunc("/auth/refresh", handlers.Refresh)
+
+	// New route for logging out
+	mux.HandleFunc("/auth/logout", handlers.Logout)
 
 	// protect dashboard-endpoint
 	protected := middleware.Auth(cfg.JWTSecret, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
