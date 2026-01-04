@@ -37,6 +37,9 @@ Under active development.
 - Fine-grained access control and authorization
 - Frontend integration
 
+### Planned dashboard design goal:
+![](/frontend/assets/images/dashboard-design-goal.png)
+
 ## Project Structure
 ```
 cloudsave/
