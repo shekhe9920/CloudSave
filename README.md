@@ -38,6 +38,8 @@ Under active development.
 - Frontend integration
 
 ### Planned dashboard design goal:
+Simple sketch:
+
 ![](/frontend/assets/images/dashboard-design-goal.png)
 
 ## Project Structure

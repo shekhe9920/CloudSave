@@ -1,5 +1,15 @@
 // dashboard.js
 
+const DEV_MODE = true; // 👈 sett til false i produksjon
+
+if (!DEV_MODE) {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        window.location.href = "index.html";
+    }
+}
+
+
 // Check if user has token in localStorage
 const token = localStorage.getItem("token");
 
