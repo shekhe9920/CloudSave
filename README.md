@@ -37,10 +37,11 @@ Under active development.
 - Fine-grained access control and authorization
 - Frontend integration
 
-### Planned dashboard design goal:
-Simple sketch:
-
-![](/frontend/assets/images/dashboard-design-goal.png)
+## Current UI Implementation
+### Login page:
+![](/frontend/assets/images/login-page.png)
+### Dashboard page (with demo data):
+![](/frontend/assets/images/dashboard-page.png)
 
 ## Project Structure
 ```

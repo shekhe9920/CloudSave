@@ -13,6 +13,7 @@
 <!-- Main full-screen section with background -->
 <section>
 
+
     <!-- Login card / box -->
     <div class="login-box">
 
@@ -24,7 +25,13 @@
         <form id="loginForm">
 
             <!-- Title -->
-            <h2>Login</h2>
+            <!-- <h2>Login</h2> -->
+            <img
+                    src="/frontend/assets/images/cloudsave-logo.png"
+                    alt="CloudSave logo"
+                    class="login-logo"
+            />
+
 
             <!-- Email input field -->
             <div class="input-box">
@@ -37,7 +44,14 @@
                     Email input
                     id="email" is important for JavaScript
                 -->
-                <input type="email" id="email" required>
+                <input
+                        type="email"
+                        id="email"
+                        required
+                        placeholder=" "
+                        autocomplete="username"
+                />
+
 
                 <!-- Label for email -->
                 <label>Email</label>
@@ -54,7 +68,14 @@
                     Password input
                     id="password" is important for JavaScript
                 -->
-                <input type="password" id="password" required>
+                <input
+                        type="password"
+                        id="password"
+                        required
+                        placeholder=" "
+                        autocomplete="new-password"
+                />
+
 
                 <!-- Label for password -->
                 <label>Password</label>

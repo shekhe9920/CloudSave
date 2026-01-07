@@ -1,3 +1,6 @@
+/* =========================
+   RESET
+========================= */
 * {
     margin: 0;
     padding: 0;
@@ -5,28 +8,40 @@
     font-family: "Calibri Light", sans-serif;
 }
 
-/* Navigation-bar */
-nav {
+/* =========================
+   NAVBAR
+========================= */
+.navbar {
     width: 100%;
     height: 75px;
-    background-color: gray;
-    color: #fff;
+    background-color: grey;
+    color: white;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 50px;
+    padding: 0 40px;
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 1000;
 }
 
-.logo {
-    font-size: 32px;
-    font-weight: bold;
+/* Logo */
+.login-logo {
+    width: 160px;
+    max-width: 70%;
+    margin-bottom: 30px;
+
+    display: block;
 }
 
+.login-logo {
+    margin-top: 20px;
+}
+
+
+/* Menu */
 .menu {
     display: flex;
     list-style: none;
@@ -34,49 +49,315 @@ nav {
 }
 
 .menu li {
-    margin-left: 20px;
+    margin-left: 25px;
 }
 
 .menu li a {
-    font-size: 19px;
-    color: #fff;
+    color: white;
     text-decoration: none;
-    transition: 0.3s ease;
+    font-size: 18px;
+    transition: 0.3s;
 }
 
 .menu li a:hover {
     color: #ccc;
 }
 
-.search {
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 4px 0;
+}
+
+/* =========================
+   RESPONSIVE NAVBAR
+========================= */
+@media (max-width: 768px) {
+
+    .menu {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        background: #2b2b2b;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .menu li {
+        margin: 15px 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+
+/* =========================
+   MAIN BACKGROUND
+========================= */
+.dashboard-bg {
+    min-height: 100vh;
+    padding-top: 75px;
+
+    display: flex;
+    justify-content: center;
+/*
+    background-image:
+            linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+            url("frontend/assets/images/background.jpg");
+
+    background-size: cover;
+    background-position: center;*/
+    background:
+            linear-gradient(
+                    rgba(0,0,0,0.35),
+                    rgba(0,0,0,0.35)
+            ),
+            url("/frontend/assets/images/background.jpg") center / cover no-repeat;
+}
+
+/* =========================
+   DASHBOARD CONTAINER
+========================= */
+.dashboard {
+    width: 100%;
+    max-width: 1400px;
+
+    display: flex;
+    margin: 20px;
+}
+
+/* =========================
+   GLASS PANELS
+========================= */
+.sidebar,
+.content,
+.storage {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    margin: 10px;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+    width: 220px;
+    padding: 20px;
+}
+
+/* TITLER (Folders, Favorites, Recent) */
+.sidebar-item.title {
     display: flex;
     align-items: center;
-    margin-left: 30px;
+    gap: 8px;
+
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 10px;
+    cursor: default;
 }
 
-.search input {
-    padding: 10px;
-    border: 1px solid #ddd;
-    outline: none;
-    margin-right: 10px;
-    font-size: 16px;
+.sidebar-item ion-icon {
+    font-size: 18px;
+    color: #111;
 }
 
-.search input:hover {
-    border-color: #72a0d4;
+/* LISTE MED MAPPER */
+.folder-tree {
+    list-style: none;
+    padding-left: 22px;
+    margin-bottom: 20px;
 }
 
-.search button {
-    padding: 10px;
-    background-color: #fff;
-    border: none;
-    border-radius: 5px;
-    color: #333;
-    font-size: 19px;
+.folder-tree li {
+    padding: 6px 0;
+    font-size: 14px;
     cursor: pointer;
 }
 
-.search button:hover {
-    background-color: #ccc;
+.folder-tree li:hover {
+    opacity: 0.7;
 }
 
+
+
+/* =========================
+   CONTENT
+========================= */
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Toolbar */
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 8px 12px;
+    border: none;
+    background: #2b2b2b;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn .icon {
+    display: flex;
+    font-size: 1.8em;
+    color: gray;
+}
+
+.btn:hover {
+    background: #444;
+}
+
+/* Search Field */
+.search-input {
+    position: relative;
+    flex: 1;
+}
+
+.search-input input {
+    width: 100%;
+    padding: 8px 36px 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.search-input .icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+    font-size: 1.2em;
+    pointer-events: none;
+}
+
+/* Sort Control */
+.sort-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.sort-label {
+    font-size: 14px;
+    color: #555;
+}
+
+.sort-control select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+
+    background: #2b2b2b;
+    color: white;
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.sort-control select:hover {
+    background: #444;
+}
+
+.sort-control select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.25);
+}
+
+
+/* Files */
+.file-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.file-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.file-card:hover {
+    transform: translateY(-3px);
+    background: #f0f0f0;
+}
+
+/* =========================
+   STORAGE PANEL
+========================= */
+.storage {
+    width: 260px;
+    padding: 20px;
+}
+
+.storage h3 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.storage-list {
+    list-style: none;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.storage-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.dot.doc { background: #4e79a7; }
+.dot.img { background: #59a14f; }
+.dot.vid { background: #f28e2b; }
+.dot.other { background: #e15759; }
+
+.storage-total {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}

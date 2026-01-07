@@ -7,27 +7,157 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="logo">CloudSave</div>
+<nav class="navbar">
+    <!-- <div class="logo">CloudSave☁︎</div> -->
+    <img
+            src="/frontend/assets/images/cloudsave-logo.png"
+            alt="CloudSave logo"
+            class="login-logo"
+    />
 
-        <ul class="menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Options</a></li>
-        </ul>
+    <ul class="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Options</a></li>
+    </ul>
 
-        <div class="search">
-            <form>
-                <input type="text" placeholder="Search...">
-                <button type="submit">Go</button>
-            </form>
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
 
-        </div>
-    </nav>
+<!-- MAIN = BACKGROUND -->
+<main class="dashboard-bg">
+
+    <!-- DASHBOARD = SENTRERT INNHOLD -->
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <!-- FOLDERS -->
+            <div class="sidebar-item title">
+                <ion-icon name="folder-open"></ion-icon>
+                <span>Folders</span>
+            </div>
+
+            <ul class="folder-tree">
+                <li>📁 Documents</li>
+                <li>📁 Images</li>
+                <li>📁 Projects</li>
+                <li>📁 Backup</li>
+            </ul>
+
+            <!-- FAVORITES -->
+            <div class="sidebar-item title">
+                <ion-icon name="bookmarks"></ion-icon>
+                <span>Favorites</span>
+            </div>
+
+            <ul class="folder-tree">
+                <li>📁 School</li>
+            </ul>
+
+
+            <!-- RECENT -->
+            <div class="sidebar-item title">
+                <ion-icon name="time"></ion-icon>
+                <span>Recent</span>
+            </div>
+
+            <ul class="folder-tree">
+                <li>📁 School</li>
+                <li>📁 Images</li>
+            </ul>
+
+        </aside>
+
+
+        <!-- Content -->
+        <section class="content">
+            <div class="toolbar">
+                <button class="btn">
+                    <span class="icon">
+                        <ion-icon name="add"></ion-icon>
+                    </span>
+                    <span>New Folder</span>
+                </button>
+
+                <button class="btn">
+                    <span class="icon">
+                        <ion-icon name="cloud-upload-outline"></ion-icon>
+                    </span>
+                    <span>Upload File</span>
+                </button>
+
+                <button class="btn">
+                    <span class="icon">
+                        <ion-icon name="filter-outline"></ion-icon>
+                    </span>
+                        <span>Filter</span>
+                </button>
+
+                <div class="sort-control">
+                    <label for="sort">Sort by:</label>
+                    <select id="sort" name="sorting_list">
+                        <option value="name">Name</option>
+                        <option value="date">Date Created</option>
+                        <option value="size">Size</option>
+                    </select>
+                </div>
+
+
+                <div class="search-input">
+                    <input type="text" placeholder="Search files...">
+                    <span class="icon">
+                        <ion-icon name="search"></ion-icon>
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="file-grid">
+                <div class="file-card">📄 report.pdf</div>
+                <div class="file-card">🖼 image.png</div>
+                <div class="file-card">📄 notes.txt</div>
+                <div class="file-card">📦 backup.zip</div>
+            </div>
+        </section>
+
+        <!-- Storage -->
+        <aside class="storage">
+            <h3>Storage Usage</h3>
+
+            <canvas id="storageChart" width="180" height="180"></canvas>
+
+            <ul class="storage-list">
+                <li><span class="dot doc"></span> Documents – 2 GB</li>
+                <li><span class="dot img"></span> Images – 3 GB</li>
+                <li><span class="dot vid"></span> Videos – 4 GB</li>
+                <li><span class="dot other"></span> Other – 1 GB</li>
+            </ul>
+
+            <p class="storage-total">Used: <strong>10 / 20 GB</strong></p>
+        </aside>
+
+    </div>
+</main>
 
 
 <script src="js/dashboard.js"></script>
+
+<!-- Ionicons (icons library) -->
+<script type="module"
+        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js">
+</script>
+
+<script nomodule
+        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js">
+</script>
+
 </body>
 </html>

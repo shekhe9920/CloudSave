@@ -1,8 +1,41 @@
+/* =========================
+   Global reset & base
+   ========================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Calibri Light", sans-serif;
+}
+
+
+/* =========================
+   Layout
+   ========================= */
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+
+    background:
+            linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+            url("/frontend/assets/images/background.jpg") center / cover no-repeat;
+}
+
+.login-box {
+    position: relative;
+    width: 400px;
+    height: 450px;
+
+    background: gray;
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 form {
@@ -12,95 +45,102 @@ form {
     align-items: center;
 }
 
-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
 
-    background:
-            linear-gradient(
-                    rgba(0,0,0,0.35),
-                    rgba(0,0,0,0.35)
-            ),
-            url("/frontend/assets/images/background.jpg") center / cover no-repeat;
-}
-
-.login-box {
-    position: relative;
-    width: 400px;
-    height: 450px;
-    background: gray;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
+/* =========================
+   Headings
+   ========================= */
 h2 {
     font-size: 2em;
     color: #fff;
     text-align: center;
 }
 
+
+/* =========================
+   Input fields
+   ========================= */
 .input-box {
     position: relative;
     width: 310px;
     margin: 30px;
+
     border-bottom: 2px solid #fff;
 }
 
+/* Input element */
+.input-box input {
+    width: 100%;
+    height: 50px;
+
+    background-color: rgba(255, 255, 255, 0.05);
+    border: none;
+    outline: none;
+
+    padding: 0 35px 0 5px;
+
+    font-size: 1em;
+    color: #fff;
+
+    caret-color: #fff;
+    cursor: text;
+
+    position: relative;
+    z-index: 2;
+
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+/* Floating label */
 .input-box label {
     position: absolute;
     top: 50%;
     left: 5px;
-    transform: translateY(-50%);
+
+    transform: translateY(-70%);
     font-size: 1em;
     color: #fff;
+
     pointer-events: none;
-    transition: .5s;
+    transition: 0.5s;
+    z-index: 1;
 }
 
+/* Label animation */
 .input-box input:focus ~ label,
-.input-box input:valid ~ label {
-    top: -5px;
+.input-box input:not(:placeholder-shown) ~ label,
+.input-box input:-webkit-autofill ~ label {
+    top: -10px;
+    font-size: 1em;
+    font-style: italic;
 }
 
-.input-box input {
-    width: 100%;
-    height: 50px;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: 1em;
-    color: #fff;
-    padding: 0 35px 0 5px;
-}
-/*
-.input-box .icon {
-    position: absolute;
-    right: 8px;
-    color: #fff;
-    font-size: 1.2em;
-    line-height: 57px;
-}*/
+/* Icon inside input */
 .input-box .icon {
     position: absolute;
     right: 8px;
     top: 50%;
+
     transform: translateY(-50%);
-    color: #fff;
     font-size: 1.2em;
+    color: gray;
+
+    pointer-events: none;
 }
 
+
+/* =========================
+   Remember / Forgot
+   ========================= */
 .remember-forgot {
     width: 90%;
     margin: -15px 0 15px;
-    font-size: .9em;
-    color: #fff;
+
     display: flex;
     justify-content: space-between;
+
+    font-size: 0.9em;
+    color: #fff;
 }
 
 .remember-forgot label input {
@@ -116,36 +156,63 @@ h2 {
     text-decoration: underline;
 }
 
+
+/* =========================
+   Button
+   ========================= */
 button {
     width: 200px;
     height: 45px;
     margin: 10px auto;
-    display: block;
 
     background: #fff;
     border: none;
-    outline: none;
     border-radius: 40px;
-    cursor: pointer;
+
     font-size: 1em;
-    color: #000;
     font-weight: 500;
+    color: #000;
+
+    cursor: pointer;
 }
 
+
+/* =========================
+   Register link
+   ========================= */
 .register-link {
-    font-size: .9em;
-    color: #fff;
+    margin: 25px 0 10px;
     text-align: center;
-    margin: 25px 0 10px
+
+    font-size: 0.9em;
+    color: #fff;
 }
 
 .register-link p a {
-    color: #fff;
-    text-decoration: none;
+    font-size: 1.2em;
     font-weight: 600;
+
+    color: lightblue;
+    text-decoration: none;
 }
 
 .register-link p a:hover {
     text-decoration: underline;
+}
+
+
+/* =========================
+   Logo
+   ========================= */
+.login-logo {
+    width: 160px;
+    max-width: 70%;
+    margin-bottom: 30px;
+
+    display: block;
+}
+
+.login-logo {
+    margin-top: 10px;
 }
 
