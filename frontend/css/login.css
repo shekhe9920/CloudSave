@@ -47,6 +47,22 @@ form {
 
 
 /* =========================
+   Logo
+   ========================= */
+.login-logo {
+    width: 160px;
+    max-width: 70%;
+    margin-bottom: 30px;
+
+    display: block;
+}
+
+.login-logo {
+    margin-top: 10px;
+}
+
+
+/* =========================
    Headings
    ========================= */
 h2 {
@@ -200,19 +216,6 @@ button {
     text-decoration: underline;
 }
 
-
 /* =========================
-   Logo
+   Register form
    ========================= */
-.login-logo {
-    width: 160px;
-    max-width: 70%;
-    margin-bottom: 30px;
-
-    display: block;
-}
-
-.login-logo {
-    margin-top: 10px;
-}
-

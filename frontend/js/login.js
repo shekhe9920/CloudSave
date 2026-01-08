@@ -47,3 +47,73 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
         alert(err.message);
     }
 });
+
+
+const loginForm = document.getElementById("loginForm");
+const registerForm = document.getElementById("registerForm")
+
+document.getElementById("showRegister").addEventListener("click", (e) => {
+    e.preventDefault();
+    loginForm.style.display = "none";
+    registerForm.style.display = "flex"
+})
+
+document.getElementById("showLogin").addEventListener("click", (e) => {
+    e.preventDefault();
+    loginForm.style.display = "none";
+    registerForm.style.display = "flex"
+})
+
+registerForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("regEmail").values;
+    const password = document.getElementById("regPassword").value;
+
+    try {
+        const response = await fetch("http://localhost:8080/regoister", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ email, password })
+        });
+
+        if (!response.ok) {
+            throw new Error("Registration failed");
+        }
+
+        alert("Account created! You can now log in.");
+
+        registerForm.reset()
+        registerForm.style.display = "none";
+        loginForm.display = "flex";
+
+    } catch (err) {
+        alert(err.message);
+    }
+    
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

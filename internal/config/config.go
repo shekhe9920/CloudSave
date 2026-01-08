@@ -20,8 +20,8 @@ type Config struct {
 func Load() *Config {
 	return &Config{
 		Port:      getEnv("PORT", "8080"),
-		DBHost:    getEnv("DB_HOST", "localhost"),
-		DBUser:    getEnv("DB_USER", "root"),
+		DBHost:    getEnv("DB_HOST", "127.0.0.1"),
+		DBUser:    getEnv("DB_USER", "clouduser"),
 		DBPass:    getEnv("DB_PASS", ""),
 		DBName:    getEnv("DB_NAME", "cloudsave"),
 		JWTSecret: getEnv("JWT_SECRET", "dev-secret-cloud-save"),
